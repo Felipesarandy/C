@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define Min 1
+#define Max 60
+#define TAMANHO 6
+#define INTERVALO (Max - Min + 1) + Min
+
+int main()
+{
+    int MEGASENA[TAMANHO], indice, i;
+    srand(time(NULL));
+    printf("Números Sorteados:\n");
+    
+    for (indice = 0; indice < 6; indice++){
+        MEGASENA[indice] = rand() % INTERVALO;
+        
+        for(i = 0; i < indice; i++){
+            if(MEGASENA[indice] == MEGASENA[i]){
+                MEGASENA[indice] = rand() % INTERVALO;
+                i = -1;
+            }
+            
+        }
+        printf("Sorte %i: %i\n", indice + 1, MEGASENA[indice]);        
+    }  
+    return 0;
+}

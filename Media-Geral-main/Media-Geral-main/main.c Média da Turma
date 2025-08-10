@@ -1,0 +1,51 @@
+/*
+VETOR (1D):float
+Ler a nota [0.0, 10.0] turma: 1° Bimestre de 50 (STOP: while) alunos e
+armazenar os dados em um vetor. Após isso, faça:
+
+LETRA A) Qual a média da turma
+
+LETRA B) Quantidade em valores absolutos e relativos (%) de:
+        -> Acima da média da turma.
+        -> Caso contrário.
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#define TAMANHO 5
+int main()
+{
+    float BIMESTRE1[TAMANHO];
+    int indice = 0;                 // START
+    
+    // RELATÓRIO LETRA A:
+    float soma = 0, media;
+    
+    // RELATÓRIO LETRA B:
+    int acima = 0;                  // RESETAR
+    while(indice < TAMANHO){        // STOP
+        printf("ALUNO %i [0.0, 10.0]: ", indice + 1);
+        scanf("%f", &BIMESTRE1[indice]);
+        
+        // TRATMENTO DE ERRO:
+        if(BIMESTRE1[indice] < 0 || BIMESTRE1[indice] > 10)
+            printf("ERRO: Dados de entrada. Escolha de novo.\n");
+        else{
+            soma = soma + BIMESTRE1[indice];
+            indice++;
+        }
+    }
+    media = soma / TAMANHO;
+    printf("Media Geral: %.1f\n", media);
+    
+    // RELATÓRIO LETRA B:
+    for(indice = 0; indice < TAMANHO; indice++){
+        if(BIMESTRE1[indice] > media)
+            acima++;
+    }
+    printf("RELATÓRIO: TOTAL DE ALUNOS:\n");
+    printf("ACIMA DA MÉDIA: %i ALUNOS (%.1f %%)\n",
+           acima, 100.0 * acima / TAMANHO);
+    printf("ABAIXO DA MÉDIA: %i ALUNOS (%.1f %%)\n",
+           TAMANHO - acima, 100.0 * (TAMANHO - acima) / TAMANHO);
+    return 0;
+}

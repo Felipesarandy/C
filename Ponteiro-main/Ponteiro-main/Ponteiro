@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int dobro(int dado);
+void dobroReferencia(int *dado);
+
+int dobro(int dado)
+{
+    dado = dado * 2;
+    return dado;
+}
+
+void dobroReferencia(int *dado)
+{
+    *dado = *dado * 2;
+}
+
+int main()
+{
+    int valor, resultado;
+
+    printf("digite um valor para calcular o dobro:");
+    scanf("%i", &valor);
+
+    resultado = dobro(valor);
+    printf("Dobro: %i\n", resultado);
+
+    dobroReferencia(&valor);
+    printf("Dobro Referencia: %i\n", valor);
+
+    return 0;
+}

@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define TAMANHO 100
+#define MIN 1000
+#define MAX 9999
+#define INTERVALO (MAX - MIN + 1) + MIN
+
+int main(void) {
+  int senhas [TAMANHO];
+  int indice, Q = 0;
+  int menorSenha = 10000, maiorSenha = 999;
+  srand(time(NULL));  //aumenta a aleatoriedade
+  for(indice = 0; indice < TAMANHO; indice++){
+    senhas[indice] = rand() % INTERVALO;
+  if(senhas[indice] % 2 != 0 && senhas[indice] % 39 == 0)
+      Q++;
+    }
+//Letra A
+  printf("Total de senhas: \n");
+  printf("Criptografia FORTE: %i (%.1f %%)\n", Q, 100.0 * Q / TAMANHO);
+  printf("Criptografia FRACA: %i (%.1f %%)\n", TAMANHO - Q, 100.0 * (TAMANHO - Q) / TAMANHO);
+
+//Letra B
+  for(indice = 0; indice < TAMANHO; indice++){
+    if(senhas[indice] % 2 != 0 && senhas[indice] % 39 == 0){
+        if(senhas[indice] < menorSenha)
+        menorSenha = senhas[indice];
+      
+        if(senhas[indice] > maiorSenha)
+        maiorSenha = senhas[indice];
+    }
+  }
+  printf("Senhas Criptografadas: \n");
+  printf("Menor senha: %i\n", menorSenha);
+  printf("Maior senha: %i\n", maiorSenha);
+  return 0;
+}

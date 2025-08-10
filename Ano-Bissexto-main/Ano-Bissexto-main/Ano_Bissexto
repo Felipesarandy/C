@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int verificar_bissexto(int ano, int divisor, int* quociente, int* resto);
+
+int verificar_bissexto(int ano, int divisor, int* quociente, int* resto) {
+
+    *quociente = ano / divisor;
+    *resto = ano % divisor;
+
+    if (divisor == 400) {
+        if (ano % 400 == 0)
+            return 1;
+
+        else
+            return 0;
+    }
+
+    else if (divisor == 100) {
+        if (ano % 400 == 0)
+            return 1;
+
+        else
+            return 0;
+    }
+
+    else if (divisor == 4) {
+        if (ano % 4 == 0 && (ano % 100 != 0 || ano % 400 == 0))
+            return 1;
+
+        else
+            return 0;
+    }
+
+    return 0;
+}
+
+int main() {
+    int ano, divisor, quociente, resto;
+
+    printf("Digite o ano: ");
+    scanf("%d", &ano);
+
+    printf("Digite o numero divisor (4, 100 ou 400): ");
+    scanf("%d", &divisor);
+
+    int resultado = verificar_bissexto(ano, divisor, &quociente, &resto);
+
+    if (resultado == 1)
+        printf("%d e um ano bissexto.\n", ano);
+
+    else
+        printf("%d nao e um ano bissexto.\n", ano);
+
+    printf("Quociente da divisao de %d por %d: %d\n", ano, divisor, quociente);
+    printf("Resto da divisao de %d por %d: %d\n", ano, divisor, resto);
+
+    return 0;
+}
